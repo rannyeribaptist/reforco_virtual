@@ -1,0 +1,14 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Sistema - Toque Emocional
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application'
+    = yield :head
+    = link_to "Sair", destroy_user_session_path, :method => :delete
+
+  %body
+    = yield
+    = javascript_include_tag 'application'
+    = yield :js
