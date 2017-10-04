@@ -8,6 +8,39 @@ Rails.application.config.assets.version = '1.0'
 # Add Yarn node_modules folder to the asset load path.
 Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
+Rails.application.config.assets.precompile += %w(
+                                                 backoffice.css.scss
+                                                 bootstrap-reset.css
+                                                 bucket-ico-fonts.css
+                                                 turquoise-theme.css
+                                                 jquery.steps.css
+                                                 style.css
+                                                 style-responsive.css
+                                                )
+
+Rails.application.config.assets.precompile += %w(
+                                                 scripts.js
+                                                 jquery.scrollTo.min.js
+                                                 jquery.nicescroll.js
+                                                 jquery.flot.canvas.min.js
+                                                 jquery.flot.animator.min.js
+                                                 jquery.dcjqaccordion.2.7.js
+                                                 sparkline/jquery.sparkline.js
+                                                 jQuery-slimScroll-1.3.0/jquery.slimscroll.min.js
+                                                 easypiechart/jquery.easypiechart.min.js
+                                                 draggable-portlet.js
+                                                 jquery-ui/jquery-ui-1.10.1.custom.min.js
+                                                 bootstrap-switch.js
+                                                 editable/bootstrap-editable.js
+                                                 editable/rails.js
+                                                 backoffice/chartkick.js
+                                                 Chart.bundle.js
+                                                 calendar/moment-2.2.1.js
+                                                 calendar/clndr.min.js
+                                                 backoffice/dashboard_calendar.js
+                                                 underscore-min.js
+                                                )
+
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.

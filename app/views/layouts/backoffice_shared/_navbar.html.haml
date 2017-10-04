@@ -1,0 +1,64 @@
+/ logo start
+.brand
+  %a.logo
+    %span
+
+  .sidebar-toggle-box
+    .fa.fa-bars
+/ logo end
+#top_menu.nav.notify-row
+  / notification start
+  %ul.nav.top-menu
+    / settings start
+    %li.dropdown
+      %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+        %i.fa.fa-tasks
+        %span.badge.bg-success 3
+      %ul.dropdown-menu.extended.tasks-bar
+        %li
+          %p há 3 paradas em aberto
+        %li
+          .task-info.clearfix
+            .desc.pull-left
+              %h5 Name
+              %p text
+
+    / inbox dropdown end
+    / notification dropdown start
+    %li#header_notification_bar.dropdown
+      %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+        %i.fa.fa-bell-o
+        %span.badge.bg-primary 5
+      %ul.dropdown-menu.extended.notification
+        %li
+          %p Outro widget
+        %li
+          .alert.alert-info.clearfix
+            %span.alert-icon
+              = fa_icon 'sun-o'
+            .noti-info
+              %a{:href => "#"} Não há atendimentos para hoje!
+
+    / notification dropdown end
+  / notification end
+.top-nav.clearfix
+  / search & user info start
+  %ul.nav.pull-right.top-menu
+    %li
+    / user login dropdown start
+    %li.dropdown
+      %a.dropdown-toggle.icon-user{"data-toggle" => "dropdown", :href => "#"}
+        %i.fa.fa-user
+        %span.username= current_user.name
+        %b.caret
+      %ul.dropdown-menu.extended.logout
+        %li
+          = link_to edit_user_registration_path do
+            %i.fa.fa-suitcase
+            = t("labels.profile")
+        %li
+          = link_to(destroy_user_session_path, :method => :delete) do
+            %i.fa.fa-key
+            = t("labels.sign_out")
+    / user login dropdown end
+  / search & user info end

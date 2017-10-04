@@ -2,13 +2,45 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title Sistema - Toque Emocional
+    %title Reforço Virtual
     = csrf_meta_tags
     = stylesheet_link_tag    'application'
+    = stylesheet_link_tag    'backoffice'
+    = stylesheet_link_tag    'bootstrap-reset'
+    = stylesheet_link_tag    'bucket-ico-fonts'
+    = stylesheet_link_tag    'style'
+    = stylesheet_link_tag    'style-responsive'
     = yield :head
-    = link_to "Sair", destroy_user_session_path, :method => :delete
 
   %body
-    = yield
+    %section#container
+      / header start
+      %header.header.fixed-top.clearfix
+        = render partial: 'layouts/backoffice_shared/navbar'
+        / header end
+      %aside
+        #sidebar.nav-collapse
+          = render partial: 'layouts/backoffice_shared/sidebar'
+        / sidebar end
+
+      %section#main-content
+        %section.wrapper
+          / page start
+          - unless content_for(:header).blank?
+            .row
+              .col-sm-12
+                %section.panel
+                  %header.panel-heading
+                    = content_for(:header)
+                    %span.tools.pull-right
+                      %a.fa.fa-chevron-down{:href => "javascript:;"}
+                  .panel-body
+                    = yield
+          - else
+            .row
+              .col-sm-12
+                = yield
+
+    = javascript_include_tag 'scripts'
     = javascript_include_tag 'application'
     = yield :js
