@@ -47,8 +47,8 @@ class Backoffice::ProfilesController < BackofficeController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_student
-      @profile = Profile.find(params[:id])
+    def set_profile
+      @profile = Profile.find_by(user_id: params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

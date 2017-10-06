@@ -27,6 +27,8 @@ gem "font-awesome-rails"
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise'
+gem 'simple_form'
+gem "paperclip", "~> 5.0.0"
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'mysql2', '~> 0.3.18'

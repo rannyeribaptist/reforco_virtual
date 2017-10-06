@@ -1,0 +1,32 @@
+- content_for :header do
+  Perfil
+
+.row
+  .col-md-12
+    .no-print
+      .panel
+        .panel-body.profile-information
+          .col-md-3
+            .profile-pic.text-center
+              = image_tag (@profile.avatar.url), class: "img-circle", style: "width:150px;height:150px;border:solid 1px #c2c2c2"
+          .col-md-6
+            .profile-desk
+              %h1= current_user.name
+              %span{class:"text-muted"}= @profile.school
+              %br
+              %p= 'Responsável:  ' + @profile.responsible_name.to_s.capitalize
+              %br
+
+          .col-md-3
+            .profile-statistics
+              %h4 Telefone do responsável:
+              %span{class: "text-muted"}= @profile.responsible_phone
+
+              %h4 Email do responsável:
+              %span{class: "text-muted"}= @profile.responsible_email
+
+%hr
+.links
+  -# = link_to fa_icon('arrow-left', class: 'text-default', text: 'Voltar'), backoffice_students_path
+  -# |
+  = link_to fa_icon('edit', class: 'text-warning', text: 'Editar'), edit_user_registration_path(current_user)

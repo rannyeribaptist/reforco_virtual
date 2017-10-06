@@ -4,6 +4,7 @@ class User < ApplicationRecord
   after_initialize :set_default_role, :if => :new_record?
 
   has_one :profile, :dependent => :destroy
+  accepts_nested_attributes_for :profile, reject_if: :all_blank
 
   def set_default_role
     self.role ||= :student

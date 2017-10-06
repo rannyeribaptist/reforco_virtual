@@ -48,13 +48,13 @@
     / user login dropdown start
     %li.dropdown
       %a.dropdown-toggle.icon-user{"data-toggle" => "dropdown", :href => "#"}
-        %i.fa.fa-user
+        = image_tag (current_user.profile.avatar.url), style: 'border: 1px solid #c2c2c2'
         %span.username= current_user.name
         %b.caret
       %ul.dropdown-menu.extended.logout
         %li
-          = link_to edit_user_registration_path do
-            %i.fa.fa-suitcase
+          = link_to backoffice_profile_path(current_user.id) do
+            %i.fa.fa-drivers-license-o
             = t("labels.profile")
         %li
           = link_to(destroy_user_session_path, :method => :delete) do
