@@ -1,0 +1,44 @@
+.row
+  .col-lg-6
+    %h2 Séries
+    - @config.grades.each do |grade|
+      Nome:
+      &nbsp
+      = editable [:backoffice, @config], :name, nested: :grades, nid: grade.id, title: "Série", value: grade.name
+      &nbsp
+      = link_to fa_icon('times-circle', class: "text-danger"), destroy_grade_path(grade), method: :delete, data: { confirm: 'Tem certeza?' }
+      %br
+
+    %br
+
+    %h4 Nova Série
+    = simple_form_for [:backoffice, @config] do |f|
+      #grades
+        .row
+          = f.simple_fields_for :grades, Grade.new do |g|
+            .col-lg-8
+              = render 'grade_fields', f: g
+          .col-lg-4
+            = f.submit 'Enviar', class: 'btn btn-sm btn-success'
+
+  .col-lg-6
+    %h2 Disciplinas
+    - @config.disciplines.each do |discipline|
+      Nome:
+      &nbsp
+      = editable [:backoffice, @config], :name, nested: :disciplines, nid: discipline.id, title: "Disciplina", value: discipline.name
+      &nbsp
+      = link_to fa_icon('times-circle', class: "text-danger"), destroy_discipline_path(discipline), method: :delete, data: { confirm: 'Tem certeza?' }
+      %br
+
+    %br
+
+    %h4 Nova Disciplina
+    = simple_form_for [:backoffice, @config] do |f|
+      #grades
+        .row
+          = f.simple_fields_for :disciplines, Discipline.new do |d|
+            .col-lg-8
+              = render 'grade_fields', f: d
+          .col-lg-4
+            = f.submit 'Enviar', class: 'btn btn-sm btn-success'

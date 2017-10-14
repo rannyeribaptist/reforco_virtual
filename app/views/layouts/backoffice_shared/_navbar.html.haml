@@ -57,6 +57,10 @@
             %i.fa.fa-drivers-license-o
             = t("labels.profile")
         %li
+          = link_to backoffice_config_path(Config.first) do
+            %i.fa.fa-cog
+            = t("labels.configurations")
+        %li
           = link_to(destroy_user_session_path, :method => :delete) do
             %i.fa.fa-key
             = t("labels.sign_out")

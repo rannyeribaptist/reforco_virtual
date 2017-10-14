@@ -19,7 +19,10 @@ Rails.application.routes.draw do
 
   namespace :backoffice do
     resources :profiles
+    resources :configs
   end
+  delete 'discipline/:id' => 'backoffice/configs#destroy_discipline', as: :destroy_discipline
+  delete 'grade/:id' => 'backoffice/configs#destroy_grade', as: :destroy_grade
 
   root to: 'visitors#index'
 end
