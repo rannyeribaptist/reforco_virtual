@@ -4,3 +4,29 @@
 
 @import 'font-awesome';
 @import "editable/bootstrap-editable";
+
+.radio-group{
+}
+
+.radio{
+    cursor:pointer;
+    margin: 2px 0;
+    margin-bottom: 5px;
+}
+
+.radio.selected{
+    border: 2px solid rgb(40, 205, 42);
+}
+
+video {
+  width: -webkit-fill-available;
+}
+video::-internal-media-controls-download-button {
+  display:none;
+}
+video::-webkit-media-controls-enclosure {
+  overflow:hidden;
+}
+video::-webkit-media-controls-panel {
+  width: calc(100% + 30px); /* Adjust as needed */
+}

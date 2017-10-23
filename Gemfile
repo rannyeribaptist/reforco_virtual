@@ -29,8 +29,10 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise'
 gem 'simple_form'
 gem 'x-editable-rails'
+gem 'kaminari'
 gem "cocoon"
 gem "paperclip", "~> 5.0.0"
+gem "paperclip-ffmpeg", "~> 1.0.1"
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'mysql2', '~> 0.3.18'

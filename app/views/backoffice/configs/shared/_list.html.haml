@@ -42,3 +42,14 @@
               = render 'grade_fields', f: d
           .col-lg-4
             = f.submit 'Enviar', class: 'btn btn-sm btn-success'
+
+
+%hr
+
+%h1 Aulas
+
+%br
+
+= link_to fa_icon('star', text: 'Cadastrar aulas', class: 'text-success'), new_backoffice_lesson_path
+%br
+= link_to fa_icon('eye', text: 'Visualizar aulas', class: 'text-info'), backoffice_lessons_path

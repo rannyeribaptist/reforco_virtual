@@ -18,9 +18,12 @@ Rails.application.routes.draw do
   end
 
   namespace :backoffice do
+    resources :lessons
     resources :profiles
     resources :configs
   end
+
+  delete 'apostille/:id' => 'backoffice/lessons#destroy_apostille', as: :destroy_apostille
   delete 'discipline/:id' => 'backoffice/configs#destroy_discipline', as: :destroy_discipline
   delete 'grade/:id' => 'backoffice/configs#destroy_grade', as: :destroy_grade
 

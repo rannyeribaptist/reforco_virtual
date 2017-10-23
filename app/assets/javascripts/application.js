@@ -18,3 +18,14 @@
 //= require editable/bootstrap-editable
 //= require editable/rails
 //= require cocoon
+
+function showUnity(a, b, c, d) {
+  var a = document.getElementsByName(a);
+  $(a).hide();
+  var b = document.getElementsByName(b);
+  $(b).hide();
+  var c = document.getElementsByName(c);
+  $(c).hide();
+  var d = document.getElementsByName(d);
+  $(d).show();
+};

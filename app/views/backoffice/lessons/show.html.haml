@@ -1,0 +1,15 @@
+- content_for :header do
+  = @lesson.title
+
+.row
+  .col-lg-8
+    = video_tag(@lesson.video.url, controls: true)
+  .col-lg-4
+    = render 'backoffice/lessons/partials/content', lesson: @lesson
+
+%hr
+
+= link_to fa_icon('arrow-left', class: 'text-default', text: 'Voltar'), backoffice_lessons_path
+- if current_user.role == 'admin'
+  |
+  = link_to fa_icon('edit', class: 'text-warning', text: 'Editar'), edit_backoffice_lesson_path(@lesson)

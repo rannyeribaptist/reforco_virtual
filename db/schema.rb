@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171013181217) do
+ActiveRecord::Schema.define(version: 20171022235629) do
+
+  create_table "apostilles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.bigint "lesson_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "file_file_name"
+    t.string "file_content_type"
+    t.integer "file_file_size"
+    t.datetime "file_updated_at"
+    t.index ["lesson_id"], name: "index_apostilles_on_lesson_id"
+  end
 
   create_table "configs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
@@ -31,6 +43,26 @@ ActiveRecord::Schema.define(version: 20171013181217) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["config_id"], name: "index_grades_on_config_id"
+  end
+
+  create_table "lessons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "title"
+    t.text "content"
+    t.bigint "grade_id"
+    t.bigint "discipline_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "video_file_name"
+    t.string "video_content_type"
+    t.integer "video_file_size"
+    t.datetime "video_updated_at"
+    t.string "unity"
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
+    t.index ["discipline_id"], name: "index_lessons_on_discipline_id"
+    t.index ["grade_id"], name: "index_lessons_on_grade_id"
   end
 
   create_table "profiles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -71,7 +103,10 @@ ActiveRecord::Schema.define(version: 20171013181217) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "apostilles", "lessons"
   add_foreign_key "disciplines", "configs"
   add_foreign_key "grades", "configs"
+  add_foreign_key "lessons", "disciplines"
+  add_foreign_key "lessons", "grades"
   add_foreign_key "profiles", "users"
 end

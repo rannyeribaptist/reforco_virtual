@@ -1,0 +1,67 @@
+- content_for :header do
+  Aulas
+
+.row
+  .col-md-12
+    %section.panel
+      %header.panel-heading.tab-bg-dark-navy-blue
+        %ul.nav.nav-tabs.nav-justified
+          - Discipline.all.each do |discipline|
+            - if discipline.name == Discipline.first.name
+              %li.active
+                %a{href: "##{discipline.name}", "data-toggle" => "tab"}
+                  = discipline.name
+            - else
+              %li
+                %a{href: "##{discipline.name}", "data-toggle" => "tab"}
+                  = discipline.name
+
+      .panel-body
+        .row
+          .col-lg-3{style: 'border-right:1px solid #ccc'}
+            .radio-group
+              .mini-stat.clearfix.radio{onclick: "showUnity(2, 3, 4, 1)"}
+                %span.mini-stat-icon.orange
+                  %strong 1
+                .mini-stat-info
+                  %span Primeira
+                  Unidade
+              .mini-stat.clearfix.radio{onclick: "showUnity(1, 3, 4, 2)"}
+                %span.mini-stat-icon.tar
+                  %strong 2
+                .mini-stat-info
+                  %span Segunda
+                  Unidade
+              .mini-stat.clearfix.radio{onclick: "showUnity(1, 2, 4, 3)"}
+                %span.mini-stat-icon.pink
+                  %strong 3
+                .mini-stat-info
+                  %span Terceira
+                  Unidade
+              .mini-stat.clearfix.radio{onclick: "showUnity(1, 2, 3, 4)"}
+                %span.mini-stat-icon.green
+                  %strong 4
+                .mini-stat-info
+                  %span Quarta
+                  Unidade
+              %hr
+              %h4 MAIS AULAS
+
+              = paginate @lessons
+
+          .col-lg-9
+            .tab-content.tasi-tab
+              - Discipline.all.each do |discipline|
+                - if discipline.name == Discipline.first.name
+                  .tab-pane.active{id: "#{discipline.name}"}
+                    = render 'backoffice/lessons/shared/list', lessons: @lessons, discipline: discipline
+                - else
+                  .tab-pane{id: "#{discipline.name}"}
+                    = render 'backoffice/lessons/shared/list', lessons: @lessons, discipline: discipline
+
+%hr
+
+= link_to fa_icon('arrow-left', text: "Voltar"), :back
+- if current_user.role == "admin"
+  |
+  = link_to fa_icon('star', text: "Nova aula", class: "text-success"), new_backoffice_lesson_path

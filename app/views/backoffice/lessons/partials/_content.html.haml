@@ -1,0 +1,14 @@
+.prf-box
+  %h1.prf-border-head{style: "font-size:30px"}= lesson.title
+  %p= lesson.content
+.prf-box
+  %h3.prf-border-head Apostilas
+  - lesson.apostilles.each do |apostille|
+    - if apostille.id != nil
+      = apostille.name
+      &nbsp
+      = link_to fa_icon('eye', text: "Ver", class: "text-default"), apostille.file.url, target: :_blank
+      - if current_user.role == 'admin'
+        |
+        = link_to fa_icon('trash', text: "Remover", class: "text-danger"), destroy_apostille_url(apostille.id), method: :delete, data: { confirm: 'Tem certeza?' }
+    %br

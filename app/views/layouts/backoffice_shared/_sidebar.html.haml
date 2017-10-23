@@ -5,6 +5,11 @@
       = link_to root_path do
         %i.fa.fa-dashboard
         %span= t('backoffice_menu.dashboard')
+
       = link_to backoffice_profile_path(current_user.id) do
         %i.fa.fa-drivers-license-o
         %span= t('backoffice_menu.profile')
+
+      = link_to backoffice_lessons_path do
+        %i.fa.fa-book
+        %span= t('backoffice_menu.lessons')
