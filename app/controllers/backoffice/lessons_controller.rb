@@ -71,11 +71,18 @@ class Backoffice::LessonsController < BackofficeController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_lesson
-      @lesson = Lesson.find(params[:id])      
+      @lesson = Lesson.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lesson_params
-      params.require(:lesson).permit(:title, :content, :grade_id, :discipline_id, :video, :unity, :image, :apostilles_attributes => [:id, :name, :file, :_destroy])
+      params.require(:lesson).permit(:title, :content, :grade_id, :discipline_id, :video, :unity, :image,
+        :apostilles_attributes => [:id, :name, :file, :_destroy],
+        :questions_attributes => [:answear, :id],
+        :exercise_attributes => [:id, :status,
+          :questions_attributes => [:_destroy, :id, :question,
+            :metadata_attributes => [:_destroy, :value, :id, :name]
+          ]
+        ])
     end
 end

@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Lesson:
+  = @exercise.lesson
+%p
+  %b Status:
+  = @exercise.status
+
+= link_to 'Edit', edit_exercise_path(@exercise)
+\|
+= link_to 'Back', exercises_path

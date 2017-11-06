@@ -18,6 +18,8 @@
 //= require editable/bootstrap-editable
 //= require editable/rails
 //= require cocoon
+//= require rails.validations
+//= require rails.validations.simple_form
 
 function showUnity(a, b, c, d) {
   var a = document.getElementsByName(a);

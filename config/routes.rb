@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resources :lessons
     resources :profiles
     resources :configs
+    resources :exercises
   end
 
   delete 'apostille/:id' => 'backoffice/lessons#destroy_apostille', as: :destroy_apostille

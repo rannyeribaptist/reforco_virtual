@@ -1,0 +1,14 @@
+.nested-fields
+  = f.input :question, label: "Pergunta"
+  %br
+  .row
+    #metadata
+      = f.simple_fields_for :metadata do |alternative|
+        = render 'metadatum_fields', f: alternative
+      .links
+        .container-fluid
+          = link_to_add_association 'Adicionar Alternativa', f, :metadata, class: 'btn btn-sm btn-primary', style: 'margin-top: 24px'
+
+  %br
+  = link_to_remove_association fa_icon('times-rectangle', text: 'Remover Pergunta', class: 'text-danger'), f
+  %hr

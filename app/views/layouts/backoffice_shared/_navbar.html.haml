@@ -48,7 +48,7 @@
     / user login dropdown start
     %li.dropdown
       %a.dropdown-toggle.icon-user{"data-toggle" => "dropdown", :href => "#"}
-        = image_tag (current_user.profile.avatar.url), style: 'border: 1px solid #c2c2c2'
+        = image_tag (current_user.profile.avatar(:thumb)), style: 'border: 1px solid #c2c2c2;height: 40px;width:40px'
         %span.username= current_user.name
         %b.caret
       %ul.dropdown-menu.extended.logout

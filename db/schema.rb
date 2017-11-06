@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171022235629) do
+ActiveRecord::Schema.define(version: 20171103050209) do
 
   create_table "apostilles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
@@ -35,6 +35,14 @@ ActiveRecord::Schema.define(version: 20171022235629) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["config_id"], name: "index_disciplines_on_config_id"
+  end
+
+  create_table "exercises", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "lesson_id"
+    t.boolean "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lesson_id"], name: "index_exercises_on_lesson_id"
   end
 
   create_table "grades", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -65,6 +73,16 @@ ActiveRecord::Schema.define(version: 20171022235629) do
     t.index ["grade_id"], name: "index_lessons_on_grade_id"
   end
 
+  create_table "metadata", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.string "value"
+    t.string "kind"
+    t.bigint "question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_metadata_on_question_id"
+  end
+
   create_table "profiles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
     t.string "school"
@@ -78,6 +96,15 @@ ActiveRecord::Schema.define(version: 20171022235629) do
     t.integer "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "question"
+    t.bigint "exercise_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "answear"
+    t.index ["exercise_id"], name: "index_questions_on_exercise_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -105,8 +132,11 @@ ActiveRecord::Schema.define(version: 20171022235629) do
 
   add_foreign_key "apostilles", "lessons"
   add_foreign_key "disciplines", "configs"
+  add_foreign_key "exercises", "lessons"
   add_foreign_key "grades", "configs"
   add_foreign_key "lessons", "disciplines"
   add_foreign_key "lessons", "grades"
+  add_foreign_key "metadata", "questions"
   add_foreign_key "profiles", "users"
+  add_foreign_key "questions", "exercises"
 end

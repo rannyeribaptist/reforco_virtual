@@ -1,0 +1,5 @@
+.nested-fields
+  .col-lg-3
+    = f.input :value, label: "Alternativa"
+    = f.input :name, label: "Correta?", as: :boolean
+    = link_to_remove_association fa_icon('times-circle', text: 'Remover Alternativa', class: 'text-danger'), f

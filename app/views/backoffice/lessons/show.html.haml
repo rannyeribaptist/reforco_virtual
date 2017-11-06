@@ -9,6 +9,25 @@
 
 %hr
 
+%h1.prf-border-head{style: "font-size:50px;border-bottom:0"} Exercício
+
+= simple_form_for [:backoffice, @lesson], validate: true do |lesson|
+  = lesson.simple_fields_for :questions, validate: true do |question|
+    %h3= question.object.question
+    - question.object.metadata.each do |alternative|
+      - if @lesson.exercise.status == true
+        = question.radio_button :answear, alternative.value, :disabled => true        
+      - else
+        = question.radio_button :answear, alternative.value, validate: { presence: true }, required: 'required'
+      = alternative.value
+      %br
+  %br
+  = lesson.simple_fields_for :exercise do |exercise|
+    = exercise.input :status, as: :hidden, input_html: {value: 'true'}
+  = lesson.submit 'Enviar', class: 'btn btn-success btn-sm' if @lesson.exercise.status != true
+
+%hr
+
 = link_to fa_icon('arrow-left', class: 'text-default', text: 'Voltar'), backoffice_lessons_path
 - if current_user.role == 'admin'
   |

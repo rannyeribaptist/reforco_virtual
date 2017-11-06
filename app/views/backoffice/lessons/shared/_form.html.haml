@@ -6,16 +6,23 @@
     = f.input :title, label: false
     %h4 Conteúdo em texto
     = f.input :content, label: false
-    %h4 Turma
-    = f.association :grade, as: :select, collection: Grade.all, label_method: :name, label: false
-    %h4 Disciplina
-    = f.association :discipline, as: :select, collection: Discipline.all, label_method: :name, label: false
-    %h4 Unidade
-    = f.input :unity, as: :select, collection: [["1ª Unidade", "1"], ["2ª Unidade", "2"], ["3ª Unidade", "3"], ["4ª Unidade", "4"]], label: false
-    %h4 Conteúdo em vídeo
-    = f.input :video, as: :file, label: false
-    %h4 Miniatura do vídeo
-    = f.input :image, as: :file, label: false
+    .row
+      .col-lg-4
+        %h4 Turma
+        = f.association :grade, as: :select, collection: Grade.all, label_method: :name, label: false
+      .col-lg-4
+        %h4 Disciplina
+        = f.association :discipline, as: :select, collection: Discipline.all, label_method: :name, label: false
+      .col-lg-4
+        %h4 Unidade
+        = f.input :unity, as: :select, collection: [["1ª Unidade", "1"], ["2ª Unidade", "2"], ["3ª Unidade", "3"], ["4ª Unidade", "4"]], label: false
+    .row
+      .col-lg-6
+        %h4 Conteúdo em vídeo
+        = f.input :video, as: :file, label: false
+      .col-lg-6
+        %h4 Miniatura do vídeo
+        = f.input :image, as: :file, label: false
 
     %hr
 
@@ -24,9 +31,19 @@
       = f.simple_fields_for :apostilles do |apostille|
         = render 'apostille_fields', f: apostille
       .links
-        = link_to_add_association 'Adicionar', f, :apostilles, class: 'btn btn-sm btn-success'
+        = link_to_add_association 'Adicionar', f, :apostilles, class: 'btn btn-sm btn-primary'
 
-    %br
+    %hr
+
+    %h3 Exercício
+    = f.simple_fields_for :exercise do |exercise|
+      #questions
+        = exercise.simple_fields_for :questions do |question|
+          = render 'question_fields', f: question
+        .links
+          = link_to_add_association 'Adicionar Pergunta', exercise, :questions, class: 'btn btn-sm btn-info', style: 'margin-top: 20px;margin-bottom: 20px;'
+
+
 
   .form-actions
     = f.submit 'Enviar', class: 'btn btn-success'
