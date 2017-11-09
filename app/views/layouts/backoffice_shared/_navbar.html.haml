@@ -2,28 +2,14 @@
 .brand
   %a.logo
     %span
+      %img{:alt => "", :src => image_path("logo.png"), :height => '80px', style: 'margin-left:-23px;margin-top:-20px'}/
 
   .sidebar-toggle-box
     .fa.fa-bars
 / logo end
 #top_menu.nav.notify-row
   / notification start
-  %ul.nav.top-menu
-    / settings start
-    %li.dropdown
-      %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-        %i.fa.fa-tasks
-        %span.badge.bg-success 3
-      %ul.dropdown-menu.extended.tasks-bar
-        %li
-          %p há 3 paradas em aberto
-        %li
-          .task-info.clearfix
-            .desc.pull-left
-              %h5 Name
-              %p text
-
-    / inbox dropdown end
+  %ul.nav.top-menu    
     / notification dropdown start
     %li#header_notification_bar.dropdown
       %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}

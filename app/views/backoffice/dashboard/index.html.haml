@@ -1,2 +1,51 @@
-User dashboard
--# = link_to "Editar Perfil", edit_backoffice_profile_path
+.container-fluid
+  .row
+    .col-md-12
+      .jumbotron.wallpaper-jumbotron
+        %h1= salute
+
+  .row
+    .col-md-8
+      .col-lg-6
+        %a{href: backoffice_lessons_path}
+          .mini-stat.clearfix
+            %span.mini-stat-icon.orange= fa_icon('book')
+            .mini-stat-info
+              %span Assista às aulas
+              = Lesson.all.count.to_s + ' Aulas disponíveis'
+
+      .col-lg-6
+        .mini-stat.clearfix
+          %span.mini-stat-icon.green= fa_icon('lightbulb-o')
+          .mini-stat-info
+            %span Dicas
+            Aprenda a estudar da forma correta
+
+      .col-lg-6
+        %a{href: backoffice_profile_path(current_user.id)}
+          .mini-stat.clearfix
+            %span.mini-stat-icon.pink= fa_icon('drivers-license-o')
+            .mini-stat-info
+              %span Perfil
+              Veja seu perfil
+
+      .col-lg-6
+        %a{href: backoffice_profile_path(current_user.id)}
+          .mini-stat.clearfix
+            %span.mini-stat-icon.tar= fa_icon('area-chart')
+            .mini-stat-info
+              %span Estatísticas
+              Veja seus números
+
+    .col-md-4
+      .profile-nav.alt
+        %section.panel
+          .user-heading.alt.clock-row.terques-bg
+            %h1= Time.now.strftime("%d %B")
+            %p.text-left= Time.now.strftime("%Y, %A")
+            %p.text-left= Time.now.strftime("%H:%M")
+
+          %ul#clock
+            %li#sec
+            %li#hour
+            %li#min

@@ -20,6 +20,11 @@
 //= require cocoon
 //= require rails.validations
 //= require rails.validations.simple_form
+//= require gauge/gauge
+//= require dashboard
+//= require css3clock/js/css3clock
+
+// Lesson per unity filter
 
 function showUnity(a, b, c, d) {
   var a = document.getElementsByName(a);
@@ -31,3 +36,4 @@ function showUnity(a, b, c, d) {
   var d = document.getElementsByName(d);
   $(d).show();
 };
+// End lesson per unity filter
