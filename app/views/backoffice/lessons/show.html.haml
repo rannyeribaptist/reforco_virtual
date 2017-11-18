@@ -16,10 +16,25 @@
     %h3= question.object.question
     - question.object.metadata.each do |alternative|
       - if @lesson.exercise.status == true
-        = question.radio_button :answear, alternative.value, :disabled => true        
+
+        - if alternative.name == "1" && question.object.answear == alternative.value
+          = fa_icon('check-circle-o', class: 'text-success')
+          %span{class: 'text-success'}= alternative.value
+
+        - elsif alternative.name == "1" && question.object.answear != alternative.value
+          = fa_icon('check-circle-o', class: 'text-warning')
+          %span= alternative.value
+
+        - elsif alternative.name != "1" && question.object.answear == alternative.value
+          = fa_icon('times-circle-o', class: 'text-danger')
+          %span{class: 'text-danger'}= alternative.value
+
+        - else
+          = question.radio_button :answear, alternative.value, :disabled => true
+          = alternative.value
+
       - else
         = question.radio_button :answear, alternative.value, validate: { presence: true }, required: 'required'
-      = alternative.value
       %br
   %br
   = lesson.simple_fields_for :exercise do |exercise|
