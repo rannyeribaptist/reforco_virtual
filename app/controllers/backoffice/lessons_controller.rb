@@ -16,6 +16,7 @@ class Backoffice::LessonsController < BackofficeController
   def new
     @lesson = Lesson.new
     @lesson.apostilles.build
+    @lesson.build_exercise
   end
 
   # GET /lessons/1/edit
