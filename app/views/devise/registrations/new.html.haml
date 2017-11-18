@@ -1,0 +1,15 @@
+.container
+  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "form-signin" }) do |f|
+    %h2.form-signin-heading{style: 'padding-top: 0px!important;background:#fff;'}
+      %img{:src => image_path("logo.png"), alt: "Toque Emocional - Login", width: '330px', style: 'margin-left:-15px;margin-bottom:-35px'}
+    - if alert
+      - flash.each do |key, value|
+        %div{:class => "#{key} alert-danger text-center", :style => "margin-bottom: 0"}= value
+    .login-wrap
+      .user-login-info
+        = f.input :email, required: true, autofocus: true, class: 'form-control', placeholder: 'Email', label: false
+        %span.small No mínimo 6 caracteres
+        = f.input :password, class: 'form-control', required: true, class: 'form-control', label: false, placeholder: 'Senha'
+        = f.input :password_confirmation, label: false, class: 'form-control', placeholder: 'Confirme sua senha', required: true
+        = link_to "Já é cadastrado? Clique aqui", new_user_session_path
+      = f.submit 'Registrar-se', class: "btn btn-lg btn-login btn-block"

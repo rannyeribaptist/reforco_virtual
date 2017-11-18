@@ -5,11 +5,9 @@
     %title= content_for?(:title) ? yield(:title) : 'Reforco'
     %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Reforco'}"}
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload'
+    = stylesheet_link_tag    'style'
+    = stylesheet_link_tag    'style-responsive'
     = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
     = csrf_meta_tags
-  %body
-    %header
-      = render 'layouts/navigation'
-    %main{:role => "main"}
-      = render 'layouts/messages'
-      = yield
+  %body{class: 'login-body'}
+    = yield
