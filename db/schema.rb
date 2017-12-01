@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171103050209) do
+ActiveRecord::Schema.define(version: 20171122173905) do
 
   create_table "apostilles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
@@ -126,6 +126,9 @@ ActiveRecord::Schema.define(version: 20171103050209) do
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
     t.integer "role"
+    t.integer "level"
+    t.integer "experience"
+    t.string "year"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

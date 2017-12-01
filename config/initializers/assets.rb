@@ -17,6 +17,7 @@ Rails.application.config.assets.precompile += %w(
                                                  style.css
                                                  style-responsive.css
                                                  css3clock/css/style.css
+                                                 imgProgress.css
                                                 )
 
 Rails.application.config.assets.precompile += %w(
@@ -48,6 +49,7 @@ Rails.application.config.assets.precompile += %w(
                                                  flot-chart/jquery.flot.animator.min.js
                                                  flot-chart/jquery.flot.growraf.js
                                                  css3clock/js/css3clock.js
+                                                 imgProgress.js
                                                 )
 
 Rails.application.config.assets.precompile += %w(

@@ -53,6 +53,7 @@
     = javascript_include_tag 'jquery.nicescroll'
     = javascript_include_tag 'sparkline/jquery.sparkline'
     = javascript_include_tag 'jQuery-slimScroll-1.3.0/jquery.slimscroll.min'
+    = javascript_include_tag 'imgProgress.js'
     :javascript
       $('.editable').editable()
 
@@ -61,5 +62,15 @@
         $(this).addClass('selected');
         var val = $(this).attr('data-value');
         $(this).parent().find('input').val(val);
+      });
+
+      $("#circle").imgProgress({
+        img_url: '#{current_user.profile.avatar.url}',
+        size: 150,
+        barSize: 10,
+        backgroundColor: '#f7f7f7',
+        foregroundColor: 'rgb(65, 211, 250)',
+        backgroundSize: 'cover',
+        percent: #{current_user.experience}
       });
     = yield :js

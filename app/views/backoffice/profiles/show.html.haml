@@ -7,8 +7,9 @@
       .panel
         .panel-body.profile-information
           .col-md-3
-            .profile-pic.text-center
-              = image_tag (@profile.avatar.url), class: "img-circle", style: "width:150px;height:150px;border:solid 1px #c2c2c2"
+            .profile-pic.text-center              
+              %div#circle
+
           .col-md-6
             .profile-desk
               %h1= current_user.name
