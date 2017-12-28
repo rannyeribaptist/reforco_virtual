@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :backoffice do
+    get 'pagseguro/confirm'
+  end
+
   devise_for :users, path: 'user', controllers: {
     sessions: 'backoffice/users/sessions',
     registrations: 'backoffice/users/registrations'
@@ -23,6 +27,8 @@ Rails.application.routes.draw do
     resources :configs
     resources :exercises
   end
+
+  post '/payment', to: 'backoffice/pagseguro#confirm', as: :confirm_payment
 
   delete 'apostille/:id' => 'backoffice/lessons#destroy_apostille', as: :destroy_apostille
   delete 'discipline/:id' => 'backoffice/configs#destroy_discipline', as: :destroy_discipline

@@ -17,7 +17,7 @@ class User < ApplicationRecord
   end
 
   def inactive_message
-    "Por favor, use o link XXX para pagar e ativar sua conta!"
+    "Por favor, use o link #{self.payment_link} para pagar e ativar sua conta!"
   end
 
   private

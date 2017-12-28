@@ -11,9 +11,28 @@ class Backoffice::Users::RegistrationsController < Devise::RegistrationsControll
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super do |resource|
+      payment = PagSeguro::PaymentRequest.new
+      payment.reference = resource.id
+      payment.notification_url = Rails.env.production? ? confirm_payment_url : 'http://reforco.rannyeri.ultrahook.com/payment'
+      payment.redirect_url = root_url
+      payment.extra_params << { senderEmail: resource.email }
+      payment.items << {
+        id: 1,
+        description: 'Um ano de Reforço Virtual',
+        amount: 165.00,
+      }
+
+      response = payment.register
+
+      if response.errors.any?
+        raise response.errors.join("\n")
+      else
+        resource.update_attributes(payment_link: response.url)
+      end
+    end
+  end
 
   # GET /resource/edit
   # def edit
@@ -52,12 +71,13 @@ class Backoffice::Users::RegistrationsController < Devise::RegistrationsControll
   end
 
   # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+  def after_sign_up_path_for(resource)
+    puts resource.payment_link
+    resource.payment_link
+  end
 
   # The path used after sign up for inactive accounts.
-  #def after_inactive_sign_up_path_for(resource)
-      #redirect_to "/"
-  #end
+  def after_inactive_sign_up_path_for(resource)
+    resource.payment_link
+  end
 end
