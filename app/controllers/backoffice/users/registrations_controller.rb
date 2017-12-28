@@ -57,8 +57,7 @@ class Backoffice::Users::RegistrationsController < Devise::RegistrationsControll
   # end
 
   # The path used after sign up for inactive accounts.
-    def after_inactive_sign_up_path_for(resource)
-      Profile.create(:user_id => resource.id)
-      redirect_to "/"
-    end
+  #def after_inactive_sign_up_path_for(resource)
+      #redirect_to "/"
+  #end
 end
