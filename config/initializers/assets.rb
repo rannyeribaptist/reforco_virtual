@@ -10,6 +10,7 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
 Rails.application.config.assets.precompile += %w(
                                                  backoffice.css.scss
+                                                 visitors.css.scss
                                                  bootstrap-reset.css
                                                  bucket-ico-fonts.css
                                                  turquoise-theme.css
@@ -18,6 +19,7 @@ Rails.application.config.assets.precompile += %w(
                                                  style-responsive.css
                                                  css3clock/css/style.css
                                                  imgProgress.css
+                                                 landing/theme-style.css
                                                 )
 
 Rails.application.config.assets.precompile += %w(
@@ -50,11 +52,14 @@ Rails.application.config.assets.precompile += %w(
                                                  flot-chart/jquery.flot.growraf.js
                                                  css3clock/js/css3clock.js
                                                  imgProgress.js
+                                                 landing/script.js
                                                 )
 
 Rails.application.config.assets.precompile += %w(
                                                  logo.png
                                                  cat_bg.jpg
+                                                 168662-OVJQ5Q-845.jpg
+                                                 computer-screens.jpg
                                                 )
 
 # Precompile additional assets.

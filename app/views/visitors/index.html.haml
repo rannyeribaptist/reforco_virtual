@@ -1,4 +1,136 @@
-%h3 Welcome
+#header
+  / Header upper region
+  .header-upper{style: "background-color:#383838!important"}
+    / all direct children of the .header-inner element will be vertically aligned with each other you can override all the behaviours using the flexbox utilities (flexbox.htm) All elements with .header-brand & .header-block-flex wrappers will automatically be aligned inline & vertically using flexbox, this can be overridden using the flexbox utilities (flexbox.htm) Use .header-block to stack elements within on small screen & "float" on larger screens use .order-first or/and .order-last classes to make an element show first or last within .header-inner or .headr-block elements
+    .header-inner.container
+      / user menu
+      .header-block-flex.order-1.mr-auto
+        %nav.nav.nav-sm.header-block-flex
+          %a.nav-link.text-xs.text-uppercase.d-none.d-md-block{"data-toggle" => "modal", :href => new_user_registration_path} Cadastro
+          %a.nav-link.text-xs.text-uppercase.d-none.d-md-block{"data-toggle" => "modal", :href => new_user_session_path} Login
+      / social media icons
+  %div{"data-toggle" => "sticky"}
+    / Header & Branding region
+    .header
+      / all direct children of the .header-inner element will be vertically aligned with each other you can override all the behaviours using the flexbox utilities (flexbox.htm) All elements with .header-brand & .header-block-flex wrappers will automatically be aligned inline & vertically using flexbox, this can be overridden using the flexbox utilities (flexbox.htm) Use .header-block to stack elements within on small screen & "float" on larger screens use .order-first or/and .order-last classes to make an element show first or last within .header-inner or .headr-block elements
+      .header-inner.container
+        / branding/logo
+        .header-brand
+          %a.header-brand-text{:href => "/", :title => "Home"}
+            %h1
+              %span> Reforço
+              Virtual
 
-= link_to "Login", new_user_session_path
-= link_to "Registro", new_user_registration_path	
+        .navbar.navbar-expand-md
+          / everything within this div is collapsed on mobile
+          .navbar-main.collapse
+            / main navigation
+            %ul.nav.navbar-nav.float-lg-right.dropdown-effect-fade
+              / Elements/shortcodes
+              %li.nav-item.dropdown.dropdown-mega-menu
+                %a#elements-drop.nav-link.dropdown-toggle{:href => new_user_session_path} Entrar
+
+              / Mega menu example
+              %li.nav-item.dropdown.dropdown-persist.dropdown-mega-menu.dropdown-mega-menu-50
+                %a#megamenu-drop.nav-link.dropdown-toggle{:href => new_user_registration_path} Cadastrar-se
+
+#highlighted
+  / Image Banner: Use the the data-bg-img functionality to create a simple image banner Use spacer classes to make the banner larger with padding, allows for easy responsive changes too see: elements-ctas.htm To make the banner full height/screen add the attributes: data-toggle="full-height" data-offset="#header"
+  .bg-white.overlay.overlay-primary.overlay-op-8.text-center.px-3.py-5.py-lg-10.flex-valign{"data-bg-img" => asset_path("168662-OVJQ5Q-845.jpg"), "data-css" => "{\"background-position\": \"center bottom\",\"background-attachment\": \"fixed\"}", "data-offset" => "#header", "data-toggle" => "full-height"}
+    %h2.display-4.text-white{"data-animate" => "fadeIn", "data-animate-delay" => "0.2", style: "font-weight:normal;font-size:55px"}
+      Conheça o
+      %span.font-weight-bold Reforço Virtual!
+    %h3.text-grey.font-weight-normal{"data-animate" => "fadeIn", "data-animate-delay" => "0.35"}
+      Potencialize o aprendizado dos seus filhos
+    %hr.hr-inverse.hr-lg.w-20.mx-auto.my-4{"data-animate" => "fadeIn", "data-animate-delay" => "0.45"}/
+    %div
+      %a.btn.btn-inverse.btn-rounded.btn-lg.py-lg-3.px-lg-5{"data-animate" => "fadeIn", "data-animate-delay" => "0.55", "data-toggle" => "scroll-link", :href => "#about"} Entenda mais
+
+#content.p-0
+  #about
+    .container-fluid.bg-inverse{style: "margin-top: -31px"}
+      .row
+        .col-lg-5.divider-diagonal.divider-diagonal-r.divider-dark.bg-img
+          = image_tag("computer-screens.jpg", style: "margin-left:-40px;")
+        .col-lg-4.py-5{style: "margin-top: 50px"}
+          %h2.display-4.text-slab.text-white.text-uppercase.mt-0.mb-5{style: "font-family:Arial!important;font-size:50px;color:white"}
+            Sobre a
+            %span.text-primary.font-weight-bold Plataforma
+          %br
+          .row.mb-3
+            .col-10.col-md-11.text-grey
+              %p{style: "font-size: 20px"} Visando fortalecer a aprendizagem dos seus filhos de forma interativa e dinâmica
+          %br
+          .row.mb-3
+            .col-10.col-md-11.text-grey
+              %p{style: "font-size: 20px"} A plataforma é um instrumento pedagógico de aprendizagem continuada que reproduzirá os conteúdos adequados à idade e série do seu filho(a).
+          %br
+          .row.mb-3
+            .col-10.col-md-11.text-grey
+              %p{style: "font-size: 20px"} Os conteúdos da plataforma poderão ser acessados quantas vezes forem necessárias para fixar bem os conteúdos
+
+  #features.container.py-4.py-lg-6
+    %hr.hr-lg.mt-0.mb-3.w-10.mx-auto.hr-primary/
+    %h2.text-center.text-uppercase.font-weight-bold.my-0{style: "font-size:50px"}
+      Matérias
+    %h5.text-center.font-weight-light.mt-2.mb-0.text-muted{style: "font-size: 15px"}
+      Disciplinas disponíveis
+    %hr.mb-5.w-50.mx-auto/
+    .row.text-center{style: "margin-top: 50px"}
+      .col-lg-2.py-2
+        %i.fa.fa-file-powerpoint-o.icon-5x.text-primary{"data-animate" => "fadeIn", "data-animate-delay" => "0.1"}
+        %h4.mt-2
+          Língua portuguesa
+      .col-lg-2.py-2
+        %i.fa.fa-percent.icon-5x.text-primary{"data-animate" => "fadeIn", "data-animate-delay" => "0.2"}
+        %h4.mt-2
+          Matemática
+      .col-lg-2.py-2
+        %i.fa.fa-hourglass-end.icon-5x.text-primary{"data-animate" => "fadeIn", "data-animate-delay" => "0.3"}
+        %h4.mt-2
+          História
+      .col-lg-2.py-2
+        %i.fa.fa-map.icon-5x.text-primary{"data-animate" => "fadeIn", "data-animate-delay" => "0.4"}
+        %h4.mt-2
+          Geografia
+      .col-lg-2.py-2
+        %i.fa.fa-thermometer-three-quarters.icon-5x.text-primary{"data-animate" => "fadeIn", "data-animate-delay" => "0.5"}
+        %h4.mt-2
+          Ciências
+      .col-lg-2.py-2
+        %i.fa.fa-language.icon-5x.text-primary{"data-animate" => "fadeIn", "data-animate-delay" => "0.6"}
+        %h4.mt-2
+          Inglês
+
+  #pricing.bg-faded.py-3.py-lg-6
+    .container
+      %hr.hr-lg.mt-0.mb-3.w-10.mx-auto.hr-primary/
+      %h2.text-center.text-uppercase.font-weight-bold.my-0{style:"font-size:50px"}
+        Valor da assinatura
+      %hr.mb-5.w-50.mx-auto/
+      .pricing-stack
+        .card.bg-white.bg-shadow.text-center.card-outline-primary{style: "width:300px;margin:auto;border: 1px solid #55A79A"}
+          %h3.card-title.py-3.text-shadow{style: "font-size:30px"}
+            %span.em Plano Anual
+          %p.price-banner.bg-primary.text-white.border-primary.card-body-overlap{style: "color:white"}
+            %span.price-currency R$
+            %span.price-digits
+              165.00
+          .card-body{style: "padding:15px"}
+            %ul.list-unstyled
+              %li{style: "margin-bottom:5px"} Acesso ilimitado à todo o conteúdo
+              %li{style: "margin-bottom:5px"} Um ano de assinatura
+              %li{style: "margin-bottom:5px"} Uma conta de usuário
+              %li{style: "margin-bottom:5px"} 24 horas disponível
+            %a.btn.btn-primary.btn-block.btn-rounded.mt-4{:href => new_user_registration_path} Assinar
+
+.bg-inverse-dark.text-sm.py-3{style: "margin-top:-30px"}
+  .container{style: "color:white"}
+    .row
+      .col-md-6
+        %p.mb-0{style: "margin-top:10px;margin-bottom:10px"}
+          Reforço Virtual
+          | Copyright 2018
+      .col-md-6
+        %p.mb-0{style: "position:absolute;right:0;margin-top:10px;margin-bottom:10px"}
+          contato@reforcovirtual.com
