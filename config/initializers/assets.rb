@@ -60,6 +60,10 @@ Rails.application.config.assets.precompile += %w(
                                                  cat_bg.jpg
                                                  168662-OVJQ5Q-845.jpg
                                                  computer-screens.jpg
+                                                 sechand.png
+                                                 minhand.png
+                                                 hourhand.png
+                                                 clockface.png
                                                 )
 
 # Precompile additional assets.
