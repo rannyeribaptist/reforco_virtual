@@ -25,6 +25,11 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+source 'https://rails-assets.org' do
+  #Igor Escobar jQuery Masks
+  gem 'rails-assets-jQuery-Mask-Plugin'
+end
+
 gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
 gem "font-awesome-rails"
@@ -32,6 +37,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise'
 gem 'simple_form'
+gem 'carrierwave'
 gem 'x-editable-rails'
 gem 'kaminari'
 gem "cocoon"

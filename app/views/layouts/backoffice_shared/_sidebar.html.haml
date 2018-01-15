@@ -3,13 +3,13 @@
   %ul#nav-accordion.sidebar-menu
     %li
       = link_to root_path do
-        %i.fa.fa-dashboard
-        %span= t('backoffice_menu.dashboard')
+        %i.fa.fa-line-chart
+        %span= t('Visão geral')
 
       = link_to backoffice_profile_path(current_user.id) do
-        %i.fa.fa-drivers-license-o
-        %span= t('backoffice_menu.profile')
+        %i.fa.fa-user
+        %span= t('Perfil')
 
       = link_to backoffice_lessons_path do
-        %i.fa.fa-book
-        %span= t('backoffice_menu.lessons')
+        %i.fa.fa-play
+        %span= t('Aulas')

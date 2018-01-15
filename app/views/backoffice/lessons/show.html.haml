@@ -35,6 +35,7 @@
 
       - else
         = question.radio_button :answear, alternative.value, validate: { presence: true }, required: 'required'
+        = alternative.value
       %br
   %br
   = lesson.simple_fields_for :exercise do |exercise|

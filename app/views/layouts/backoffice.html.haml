@@ -47,7 +47,7 @@
               .col-sm-12
                 = yield
 
-    = javascript_include_tag 'application', 'data-turbolinks-eval': 'false'
+    = javascript_include_tag 'application', 'data-turbolinks' => 'reload'
     = javascript_include_tag 'scripts'
     = javascript_include_tag 'jquery.scrollTo.min'
     = javascript_include_tag 'jquery.nicescroll'
@@ -65,12 +65,12 @@
       });
 
       $("#circle").imgProgress({
-        img_url: '#{current_user.profile.avatar.url}',
+        img_url: '#{current_user.profile.avatar}',
         size: 150,
         barSize: 10,
         backgroundColor: '#f7f7f7',
         foregroundColor: 'rgb(65, 211, 250)',
         backgroundSize: 'cover',
-        percent: #{current_user.experience}
+        percent: "#{current_user.experience}"
       });
     = yield :js

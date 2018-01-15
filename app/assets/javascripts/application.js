@@ -13,8 +13,8 @@
 //= require jquery
 //= require rails-ujs
 //= require turbolinks
+//= require jQuery-Mask-Plugin
 //= require bootstrap-sprockets
-//= require_tree .
 //= require editable/bootstrap-editable
 //= require editable/rails
 //= require cocoon
@@ -23,6 +23,7 @@
 //= require gauge/gauge
 //= require dashboard
 //= require css3clock/js/css3clock
+//= require_tree .
 
 // Lesson per unity filter
 
@@ -37,3 +38,15 @@ function showUnity(a, b, c, d) {
   $(d).show();
 };
 // End lesson per unity filter
+
+var SPMaskBehavior = function (val) {
+  return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+},
+spOptions = {
+  onKeyPress: function(val, e, field, options) {
+    field.mask(SPMaskBehavior.apply({}, arguments), options);
+  }
+};
+$(document).ready(function(){
+  $('.cellphone').mask(SPMaskBehavior, spOptions);
+});

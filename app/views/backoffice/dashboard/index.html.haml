@@ -41,9 +41,9 @@
       .profile-nav.alt
         %section.panel
           .user-heading.alt.clock-row.terques-bg
-            %h1= Time.now.strftime("%d %B")
-            %p.text-left= Time.now.strftime("%Y, %A")
-            %p.text-left= Time.now.strftime("%H:%M")
+            %h1= l(Time.now, format: "%d de %B de %Y")
+            %p.text-left= l(Time.now,format: "%A")
+            %p.text-left= l(Time.now,format: "%H:%M")
 
           %ul#clock
             %li#sec

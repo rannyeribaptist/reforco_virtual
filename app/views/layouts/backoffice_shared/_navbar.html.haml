@@ -7,26 +7,7 @@
   .sidebar-toggle-box
     .fa.fa-bars
 / logo end
-#top_menu.nav.notify-row
-  / notification start
-  %ul.nav.top-menu
-    / notification dropdown start
-    %li#header_notification_bar.dropdown
-      %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-        %i.fa.fa-bell-o
-        %span.badge.bg-primary 5
-      %ul.dropdown-menu.extended.notification
-        %li
-          %p Outro widget
-        %li
-          .alert.alert-info.clearfix
-            %span.alert-icon
-              = fa_icon 'sun-o'
-            .noti-info
-              %a{:href => "#"} Não há atendimentos para hoje!
 
-    / notification dropdown end
-  / notification end
 .top-nav.clearfix
   / search & user info start
   %ul.nav.pull-right.top-menu
@@ -34,22 +15,22 @@
     / user login dropdown start
     %li.dropdown
       %a.dropdown-toggle.icon-user{"data-toggle" => "dropdown", :href => "#"}
-        = image_tag (current_user.profile.avatar(:thumb)), style: 'border: 1px solid #c2c2c2;height: 40px;width:40px' if current_user.profile.avatar.presence == true
+        = image_tag(current_user.profile.avatar, style: 'border: 1px solid #c2c2c2;height: 40px;width:40px') if current_user.profile.avatar.present?
         %span.username= current_user.name
         %b.caret
       %ul.dropdown-menu.extended.logout
         %li
           = link_to backoffice_profile_path(current_user.id) do
-            %i.fa.fa-drivers-license-o
-            = t("labels.profile")
+            %i.fa.fa-user
+            = "Perfil"
         - if current_user.role == 'admin'
           %li
             = link_to backoffice_config_path(Config.first) do
               %i.fa.fa-cog
-              = t("labels.configurations")
+              = "Configurações"
         %li
           = link_to(destroy_user_session_path, :method => :delete) do
             %i.fa.fa-key
-            = t("labels.sign_out")
+            = "Sair"
     / user login dropdown end
   / search & user info end
