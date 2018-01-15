@@ -4,17 +4,18 @@
       .row
         .col-lg-12
         - lessons_sliced.each do |lesson|
-          .col-lg-4{name: "#{lesson.unity}"}
-            - if lesson.discipline.name == discipline.name
-              %div{class: "video item", style: "width:100%!important", name: "#{lesson.unity}"}
-                %a{:href => backoffice_lesson_path(lesson)}
-                  = image_tag(lesson.image.url)
-                  %hr
-                  %h4{style: "font-weight:bold"}= lesson.title.truncate_words(3).capitalize
-                  %small= 'Unidade ' + lesson.unity.to_s
-                  - if current_user.role == 'admin'
-                    %br
-                    = link_to fa_icon('trash', text: 'Excluir aula', class: 'text-danger'), backoffice_lesson_path(lesson), method: :delete, data: { confirm: 'Tem certeza?' }
+          - if lesson.grade.id.to_s == current_user.grade.to_s
+            .col-lg-4{name: "#{lesson.unity}"}
+              - if lesson.discipline.name == discipline.name
+                %div{class: "video item", style: "width:100%!important", name: "#{lesson.unity}"}
+                  %a{:href => backoffice_lesson_path(lesson)}
+                    = image_tag(lesson.image.url)
+                    %hr
+                    %h4{style: "font-weight:bold"}= lesson.title.truncate_words(3).capitalize
+                    %small= 'Unidade ' + lesson.unity.to_s
+                    - if current_user.role == 'admin'
+                      %br
+                      = link_to fa_icon('trash', text: 'Excluir aula', class: 'text-danger'), backoffice_lesson_path(lesson), method: :delete, data: { confirm: 'Tem certeza?' }
 
     -# = paginate lessons
 

@@ -62,7 +62,7 @@ class Backoffice::Users::RegistrationsController < Devise::RegistrationsControll
 
   # If you have extra params to permit, append them to the sanitizer.
     def configure_sign_up_params
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :profile_attributes => []])
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :grade, :profile_attributes => []])
     end
 
   # If you have extra params to permit, append them to the sanitizer.
