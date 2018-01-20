@@ -8,7 +8,7 @@
     .login-wrap
       .user-login-info
         = f.input :name, required: true, autofocus: true, class: 'form-control', placeholder: 'Nome', label: false
-        = f.input :grade, required: true, class: 'form-control', placeholder: 'Série', label: false, as: :select, collection: Grade.all, selected: Grade.first
+        = f.input :grade, required: false, class: 'form-control', placeholder: 'Série', label: 'Série', as: :select, collection: Grade.all, selected: Grade.first
         = f.input :email, required: true, class: 'form-control', placeholder: 'Email', label: false
         %span.small No mínimo 6 caracteres
         = f.input :password, class: 'form-control', required: true, class: 'form-control', label: false, placeholder: 'Senha'
