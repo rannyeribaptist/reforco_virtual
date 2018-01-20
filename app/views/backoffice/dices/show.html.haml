@@ -1,0 +1,29 @@
+- content_for :header do
+  = @dice.title
+
+%h1{style: "font-size: 50px"}= @dice.title
+
+- if @dice.content.split(" ").count >= 150
+  .row
+    .col-lg-4
+      = image_tag(@dice.image, style: "height:250px;width:300px;border-radius:5px")
+    .col-lg-8
+      %p{style: "font-size: 20px"}
+        - @dice.content.split[0..(@dice.content.split(" ").count/2)].each do |word|
+          = word + " "
+
+  %br
+  %p{style: "font-size: 20px"}
+    - @dice.content.split[(@dice.content.split(" ").count/2 + 1)..(@dice.content.split(" ").count)].each do |word|
+      = word + " "
+
+- else
+  .row
+    .col-lg-4
+      = image_tag(@dice.image, style: "height:250px;width:300px;border-radius:5px")
+    .col-lg-8
+      %p{style: "font-size: 20px"}= @dice.content
+
+%hr
+
+= link_to fa_icon('arrow-left', text: "Voltar"), :back

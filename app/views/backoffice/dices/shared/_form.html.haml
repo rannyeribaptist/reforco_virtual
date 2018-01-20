@@ -1,0 +1,10 @@
+= simple_form_for([:backoffice, @dice]) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :title, label: "Título"
+    = f.input :content, label: "Conteúdo"
+    = f.input :image, label: "Imagem"
+
+  .form-actions
+    = f.submit "Enviar", class: "btn btn-success"

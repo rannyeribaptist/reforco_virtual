@@ -1,0 +1,12 @@
+- content_for :header do
+  Dicas de estudo
+
+#gallery.media-gal
+  = render 'backoffice/dices/shared/list', dices: @dices
+
+%hr
+
+= link_to fa_icon('arrow-left', text: "Voltar"), :back
+- if current_user.role == "admin"
+  |
+  = link_to fa_icon('star', text: "Nova Dica", class: "text-success"), new_backoffice_dice_path

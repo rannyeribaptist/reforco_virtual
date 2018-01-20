@@ -15,11 +15,12 @@
               = Lesson.all.count.to_s + ' Aulas disponíveis'
 
       .col-lg-6
-        .mini-stat.clearfix
-          %span.mini-stat-icon.green= fa_icon('lightbulb-o')
-          .mini-stat-info
-            %span Dicas
-            Aprenda a estudar da forma correta
+        %a{href: backoffice_dices_path}
+          .mini-stat.clearfix
+            %span.mini-stat-icon.green= fa_icon('lightbulb-o')
+            .mini-stat-info
+              %span Dicas
+              Aprenda a estudar da forma correta
 
       .col-lg-6
         %a{href: backoffice_profile_path(current_user.id)}

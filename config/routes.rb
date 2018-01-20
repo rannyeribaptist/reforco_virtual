@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   end
 
   namespace :backoffice do
+    resources :dices
     resources :lessons
     resources :profiles
     resources :configs

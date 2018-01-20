@@ -1,0 +1,10 @@
+- dices.each do |dice|
+  %a{"data-toggle" => "modal", :href => backoffice_dice_path(dice)}
+    .images.item
+      %img{:alt => "", :src => dice.image}/
+      %p= dice.title
+      - if current_user.role == "admin"
+        %hr
+        = link_to fa_icon("pencil", text: "Editar", style: "color:#f1ee00"), edit_backoffice_dice_path(dice)
+        |
+        = link_to fa_icon("trash", text: "Excluir", style: "color:red"), backoffice_dice_url(dice), method: :delete, data: { confirm: 'Are you sure?' }
