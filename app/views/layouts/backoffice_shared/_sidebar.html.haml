@@ -5,15 +5,22 @@
       = link_to root_path do
         %i.fa.fa-line-chart
         %span= t('Visão geral')
-
-      = link_to backoffice_profile_path(current_user.id) do
-        %i.fa.fa-user
-        %span= t('Perfil')
+      
+      - unless current_user.role == "manager"
+        = link_to backoffice_profile_path(current_user.id) do
+          %i.fa.fa-user
+          %span= t('Perfil')
 
       = link_to backoffice_lessons_path do
         %i.fa.fa-play
         %span= t('Aulas')
 
-      = link_to backoffice_dices_path do
-        %i.fa.fa-lightbulb-o
-        %span= t('Aprenda a estudar')
+      - unless current_user.role == "manager"
+        = link_to backoffice_dices_path do
+          %i.fa.fa-lightbulb-o
+          %span= t('Aprenda a estudar')
+      
+      - if current_user.role == "manager"
+        = link_to new_backoffice_lesson_path do
+          %i.fa.fa-plus
+          %span= t('Cadastrar Aulas')
