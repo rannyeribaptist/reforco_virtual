@@ -1,8 +1,10 @@
 class Backoffice::ProfilesController < BackofficeController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
+  layout 'profile', :only => [:new]
 
   def new
     @profile = Profile.new
+    @user = User.find_by_id(current_user.id)
   end
 
   def show
@@ -13,6 +15,7 @@ class Backoffice::ProfilesController < BackofficeController
 
   def create
     @profile = Profile.new(profile_params)
+    @profile.user_id = current_user.id
 
     respond_to do |format|
       if @profile.save
@@ -53,6 +56,6 @@ class Backoffice::ProfilesController < BackofficeController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:avatar, :school, :responsible_name, :responsible_email, :responsible_phone, :user_id)
+      params.require(:profile).permit(:avatar, :school, :responsible_name, :responsible_email, :responsible_phone, :user_id, :name, :grade)
     end
 end

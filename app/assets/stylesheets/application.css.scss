@@ -21,3 +21,17 @@
 .form-control {
   color: #525252!important;
 }
+
+.picture {
+  border: dashed 2px #c2c2c2;
+  padding: 50px;
+  font-size: 25px;
+  font-weight: bold;
+  width: 250px;
+  height: 300px;
+  text-align: center;  
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

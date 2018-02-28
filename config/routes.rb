@@ -1,4 +1,4 @@
-Rails.application.routes.draw do
+Rails.application.routes.draw do  
   namespace :backoffice do
     get 'pagseguro/confirm'
   end
@@ -19,9 +19,11 @@ Rails.application.routes.draw do
 
   authenticated :user do
     root 'backoffice/dashboard#index', as: :authenticated_root
+    resources :profile_sessions
   end
 
   namespace :backoffice do
+    resources :users
     resources :dices
     resources :lessons
     resources :profiles

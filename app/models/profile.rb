@@ -1,9 +1,6 @@
 class Profile < ApplicationRecord
   belongs_to :user
+  # belongs_to :profile_session
 
-  mount_uploader :avatar, AvatarUploader
-
-  # validates_presence_of :responsible_name
-  # validates_presence_of :responsible_email
-  # validates_presence_of :responsible_phone
+  mount_uploader :avatar, AvatarUploader  
 end

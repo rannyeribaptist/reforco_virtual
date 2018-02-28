@@ -1,0 +1,23 @@
+%h1 Listing profile_sessions
+
+%table
+  %thead
+    %tr
+      %th Profile
+      %th User
+      %th
+      %th
+      %th
+
+  %tbody
+    - @profile_sessions.each do |profile_session|
+      %tr
+        %td= profile_session.profile
+        %td= profile_session.user
+        %td= link_to 'Show', profile_session
+        %td= link_to 'Edit', edit_profile_session_path(profile_session)
+        %td= link_to 'Destroy', profile_session, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Profile session', new_profile_session_path

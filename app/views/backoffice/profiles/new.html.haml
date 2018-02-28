@@ -1,0 +1,44 @@
+= simple_form_for ([:backoffice, @profile]) do |profile|
+  .container-fluid{style: "padding:50px;"}
+    %h1{style: "font-weight:bold"} Novo Perfil
+    %br/
+    = profile.error_notification    
+    
+    .row
+      .col-md-3
+        = profile.input :avatar, label: false do
+          %label.picture#label{for: "profile_avatar"} Foto
+          %img#picture{style: "max-width:250px"}
+          %input{class: "file optional", type: "file", name: "profile[avatar]", id: "profile_avatar", style: "display:none", onchange: "loadFile(event)"}
+          
+      .col-md-9
+        = profile.input :name, placeholder: "Nome", label: false, input_html: { class: "input-lg", style: "margin-bottom:30px" }
+        .row
+          .col-lg-6
+            = profile.input :school, placeholder: "Escola", label: false, input_html: { class: "input-lg", style: "margin-bottom:30px" }
+          .col-lg-6
+            = profile.input :grade, placeholder: "Série", as: :select, collection: Grade.all, label: false, input_html: { class: "input-lg", style: "margin-bottom:30px" }
+        
+            -# = profile.input :user_id, as: :hidden, input_html: { value: current_user.id }
+        = profile.input :responsible_name, placeholder: "Nome do responsável", label: false, input_html: { class: "input-lg", style: "margin-bottom:30px" }
+        
+        .row
+          .col-lg-6
+            = profile.input :responsible_email, placeholder: "Email do responsável", label: false, input_html: { class: "input-lg", style: "margin-bottom:30px" }
+          .col-lg-6
+            = profile.input :responsible_phone, placeholder: "Telefone do responsável", input_html: { class: "cellphone input-lg", style: "margin-bottom:30px" }, label: false
+    
+    = link_to "Voltar", :back, class: "btn btn-white"
+    = profile.submit "Salvar", class: "btn btn-success pull-right"    
+
+:javascript
+  var loadFile = function(event) {
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById('picture');
+      output.src = reader.result;
+      document.getElementById('label').style.display = "none";
+      document.getElementById('profile_avatar').style.display = "block"; 
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  };

@@ -46,6 +46,7 @@ gem "paperclip-ffmpeg", "~> 1.0.1"
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'mysql2', '~> 0.3.18'
+gem 'rails-erd', require: false, group: :development
 
 group :development do
   gem 'capistrano', '~> 3.0.1'

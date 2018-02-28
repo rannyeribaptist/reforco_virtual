@@ -14,8 +14,8 @@
     %li
     / user login dropdown start
     %li.dropdown
-      %a.dropdown-toggle.icon-user{"data-toggle" => "dropdown", :href => "#"}
-        = image_tag(current_user.profile.avatar, style: 'border: 1px solid #c2c2c2;height: 40px;width:40px') if current_user.profile.avatar.present?
+      %a.dropdown-toggle.icon-user{"data-toggle" => "dropdown", :href => "#"}      
+        -# = image_tag(current_user.profile.avatar, style: 'border: 1px solid #c2c2c2;height: 40px;width:40px') if current_user.profile.avatar.present?
         %span.username= current_user.name
         %b.caret
       %ul.dropdown-menu.extended.logout

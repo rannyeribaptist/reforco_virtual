@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Profile:
+  = @profile_session.profile
+%p
+  %b User:
+  = @profile_session.user
+
+= link_to 'Edit', edit_profile_session_path(@profile_session)
+\|
+= link_to 'Back', profile_sessions_path

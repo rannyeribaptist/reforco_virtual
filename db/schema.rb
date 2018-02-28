@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180120181737) do
+ActiveRecord::Schema.define(version: 20180226191441) do
 
   create_table "apostilles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
@@ -91,6 +91,15 @@ ActiveRecord::Schema.define(version: 20180120181737) do
     t.index ["question_id"], name: "index_metadata_on_question_id"
   end
 
+  create_table "profile_sessions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "profile_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_profile_sessions_on_profile_id"
+    t.index ["user_id"], name: "index_profile_sessions_on_user_id"
+  end
+
   create_table "profiles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
     t.string "school"
@@ -100,6 +109,11 @@ ActiveRecord::Schema.define(version: 20180120181737) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "avatar"
+    t.string "name"
+    t.string "year"
+    t.string "grade"
+    t.string "level"
+    t.string "experience"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
@@ -110,6 +124,15 @@ ActiveRecord::Schema.define(version: 20180120181737) do
     t.datetime "updated_at", null: false
     t.string "answear"
     t.index ["exercise_id"], name: "index_questions_on_exercise_id"
+  end
+
+  create_table "sessions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.bigint "profile_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_sessions_on_profile_id"
+    t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -149,6 +172,10 @@ ActiveRecord::Schema.define(version: 20180120181737) do
   add_foreign_key "lessons", "disciplines"
   add_foreign_key "lessons", "grades"
   add_foreign_key "metadata", "questions"
+  add_foreign_key "profile_sessions", "profiles"
+  add_foreign_key "profile_sessions", "users"
   add_foreign_key "profiles", "users"
   add_foreign_key "questions", "exercises"
+  add_foreign_key "sessions", "profiles"
+  add_foreign_key "sessions", "users"
 end

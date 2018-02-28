@@ -3,10 +3,9 @@ class User < ApplicationRecord
   # after_initialize :set_default_role, :check_profile, :if => :new_record?
   after_initialize :set_default_role, :if => :new_record?
 
-  has_one :profile, :dependent => :destroy
-  accepts_nested_attributes_for :profile, reject_if: :all_blank
-
-  after_create :create_profile
+  has_many :profiles, :dependent => :destroy
+  has_many :profile_sessions, :dependent => :destroy
+  accepts_nested_attributes_for :profiles, reject_if: :all_blank  
 
   def set_default_role
     self.role ||= :student
@@ -20,10 +19,7 @@ class User < ApplicationRecord
     "Por favor, use o link #{self.payment_link} para pagar e ativar sua conta!"
   end
 
-  private
-    def create_profile
-      Profile.create(:user_id => self.id)
-    end
+  private    
 
   # def check_profile
   #   a = Profile.where(:user_id => self.id)
