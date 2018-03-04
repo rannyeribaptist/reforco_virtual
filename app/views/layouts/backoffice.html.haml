@@ -19,33 +19,48 @@
     = yield :head
 
   %body
-    %section#container
-      / header start
-      %header.header.fixed-top.clearfix
-        = render partial: 'layouts/backoffice_shared/navbar'
-        / header end
-      %aside
-        #sidebar.nav-collapse
-          = render partial: 'layouts/backoffice_shared/sidebar'
-        / sidebar end
+    - if current_user.profile_sessions.empty?
+      .container-fluid{style: "text-align: center"}
+        %h1{style: "font-size: 50px;font-weight:bold"} Perfis
+        %hr.invisible
+        .row          
+          - current_user.profiles.each do |profile|              
+            = simple_form_for ProfileSession.new do |session|
+              .col-md-3                
+                .picture{style: "border:1px solid #c2c2c2;"}
+                  = image_tag(profile.avatar)
+                  = session.input :profile_id, as: :hidden, input_html: { value: profile.id }
+                  = session.input :user_id, as: :hidden, input_html: { value: current_user.id }
+                  = session.submit "Entrar como #{profile.name.split(" ").first.capitalize}", class: "btn btn-small btn-white"
 
-      %section#main-content
-        %section.wrapper
-          / page start
-          - unless content_for(:header).blank?
-            .row
-              .col-sm-12
-                %section.panel
-                  %header.panel-heading
-                    = content_for(:header)
-                    %span.tools.pull-right
-                      %a.fa.fa-chevron-down{:href => "javascript:;"}
-                  .panel-body
-                    = yield
-          - else
-            .row
-              .col-sm-12
-                = yield
+    - else
+      %section#container
+        / header start
+        %header.header.fixed-top.clearfix
+          = render partial: 'layouts/backoffice_shared/navbar'
+          / header end
+        %aside
+          #sidebar.nav-collapse
+            = render partial: 'layouts/backoffice_shared/sidebar'
+          / sidebar end
+
+        %section#main-content
+          %section.wrapper
+            / page start
+            - unless content_for(:header).blank?
+              .row
+                .col-sm-12
+                  %section.panel
+                    %header.panel-heading
+                      = content_for(:header)
+                      %span.tools.pull-right
+                        %a.fa.fa-chevron-down{:href => "javascript:;"}
+                    .panel-body
+                      = yield
+            - else
+              .row
+                .col-sm-12
+                  = yield
 
     = javascript_include_tag 'application', 'data-turbolinks-eval': 'false'
     = javascript_include_tag 'scripts'
@@ -73,4 +88,5 @@
         backgroundSize: 'cover',
         percent: "#{current_user.experience}"
       });
+      alert('Cookie with the current profile logged in: ' + '#{cookies[:profile]}');      
     = yield :js

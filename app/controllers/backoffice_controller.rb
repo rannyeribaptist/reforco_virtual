@@ -3,5 +3,5 @@ class BackofficeController < ApplicationController
   before_action :authenticate_user!
 
   #Default dashboard layout
-  layout 'backoffice'  
+  layout 'backoffice'
 end

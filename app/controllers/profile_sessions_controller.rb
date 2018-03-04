@@ -28,13 +28,14 @@ class ProfileSessionsController < ApplicationController
 
     respond_to do |format|
       if @profile_session.save
-        format.html { redirect_to @profile_session, notice: 'Profile session was successfully created.' }
+        format.html { redirect_to '/', notice: 'Profile session was successfully created.' }
         format.json { render :show, status: :created, location: @profile_session }
       else
         format.html { render :new }
         format.json { render json: @profile_session.errors, status: :unprocessable_entity }
       end
     end
+    cookies[:profile] = @profile_session.profile_id
   end
 
   # PATCH/PUT /profile_sessions/1
