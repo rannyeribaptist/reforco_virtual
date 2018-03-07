@@ -12,7 +12,7 @@
                                               
           .col-md-6
             .profile-desk
-              %h1= current_user.name
+              %h1= Profile.where(:id => cookies[:profile]).first.name
               %span{class:"text-muted"}= @profile.school
               %br
               %p= 'Responsável:  ' + @profile.responsible_name.to_s.capitalize
@@ -29,4 +29,4 @@
 %hr
 -# = link_to fa_icon('arrow-left', class: 'text-default', text: 'Voltar'), backoffice_students_path
 -# |
-= link_to fa_icon('edit', class: 'text-warning', text: 'Editar'), edit_user_registration_path(current_user)
+= link_to fa_icon('edit', class: 'text-warning', text: 'Editar'), edit_backoffice_profile_path(@profile)

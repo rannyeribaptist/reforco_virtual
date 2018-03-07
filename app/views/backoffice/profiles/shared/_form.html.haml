@@ -1,0 +1,23 @@
+= simple_form_for ([:backoffice, profile]) do |f|  
+  %br/
+  = f.error_notification
+  
+  %h3 Foto:
+  = f.input :avatar, style: "display:none!important", label: false
+  = f.input :name, placeholder: "Nome", label: false, input_html: { class: "input-lg", style: "margin-bottom:30px" }
+  .row
+    .col-lg-6
+      = f.input :school, placeholder: "Escola", label: false, input_html: { class: "input-lg", style: "margin-bottom:30px" }
+    .col-lg-6
+      = f.input :grade, placeholder: "Série", as: :select, collection: Grade.all, label: false, input_html: { class: "input-lg", style: "margin-bottom:30px" }
+  
+      -# = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
+  = f.input :responsible_name, placeholder: "Nome do responsável", label: false, input_html: { class: "input-lg", style: "margin-bottom:30px" }
+  
+  .row
+    .col-lg-6
+      = f.input :responsible_email, placeholder: "Email do responsável", label: false, input_html: { class: "input-lg", style: "margin-bottom:30px" }
+    .col-lg-6
+      = f.input :responsible_phone, placeholder: "Telefone do responsável", input_html: { class: "cellphone input-lg", style: "margin-bottom:30px" }, label: false
+
+  = f.submit "Salvar", class: "btn btn-success pull-right"

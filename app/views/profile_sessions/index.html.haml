@@ -1,23 +1,19 @@
-%h1 Listing profile_sessions
-
-%table
-  %thead
-    %tr
-      %th Profile
-      %th User
-      %th
-      %th
-      %th
-
-  %tbody
-    - @profile_sessions.each do |profile_session|
-      %tr
-        %td= profile_session.profile
-        %td= profile_session.user
-        %td= link_to 'Show', profile_session
-        %td= link_to 'Edit', edit_profile_session_path(profile_session)
-        %td= link_to 'Destroy', profile_session, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Profile session', new_profile_session_path
+.container-fluid{style: "text-align: center"}
+  %h1{style: "font-size: 50px;font-weight:bold"} Entrar como
+  %hr.invisible
+  .row
+    - current_user.profiles.each do |profile|              
+      = simple_form_for ProfileSession.new do |session|
+        .col-md-3          
+          .card{style: "border:1px solid #c2c2c2;padding:15px;background-color:white"}
+            = image_tag(profile.avatar, class: "img-responsive") if profile.avatar.present?
+            = image_tag(asset_path("missing.png"), class: "img-responsive") if not profile.avatar.present?
+            %br/
+            .card-body
+              = session.input :profile_id, as: :hidden, input_html: { value: profile.id }
+              = session.input :user_id, as: :hidden, input_html: { value: current_user.id }
+              = session.submit "Entrar como #{profile.name.split(" ").first.capitalize}", class: "btn btn-small btn-primary"
+      
+    - if current_user.profiles.length < 4
+      .picture
+        = link_to "Novo perfil", new_backoffice_profile_path, class: "btn btn-success"

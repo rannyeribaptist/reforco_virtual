@@ -8,8 +8,9 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def after_sign_out_path_for(resource)
-    ProfileSession.where(:profile_id => cookies[:profile]).first.destroy if not cookies[:profile].empty?
+  def after_sign_out_path_for(resource)    
+    ProfileSession.where(:profile_id => cookies[:profile]).first.destroy if cookies[:profile].present?
+    cookies.delete(:profile) if cookies[:profile].present?    
     root_path
   end
 end

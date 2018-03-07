@@ -1,0 +1,8 @@
+- content_for :header do
+  Editar perfil
+
+= render "backoffice/profiles/shared/form", :profile => @profile
+
+%hr/
+
+= link_to fa_icon('arrow-left', text: "Voltar"), :back

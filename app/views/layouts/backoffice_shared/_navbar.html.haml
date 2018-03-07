@@ -14,9 +14,13 @@
     %li
     / user login dropdown start
     %li.dropdown
-      %a.dropdown-toggle.icon-user{"data-toggle" => "dropdown", :href => "#"}      
-        -# = image_tag(current_user.profile.avatar, style: 'border: 1px solid #c2c2c2;height: 40px;width:40px') if current_user.profile.avatar.present?
-        %span.username= current_user.name
+      %a.dropdown-toggle.icon-user{"data-toggle" => "dropdown", :href => "#"}
+        - if current_user.role == "student"
+          = image_tag(Profile.where(:id => cookies[:profile]).first.avatar, style: 'border: 1px solid #c2c2c2;height: 40px;width:40px') if Profile.where(:id => cookies[:profile]).first.avatar.present?
+          %span.username= Profile.where(:id => cookies[:profile]).first.name
+        - else
+          -# = image_tag(current_user.avatar, style: 'border: 1px solid #c2c2c2;height: 40px;width:40px') if current_user.avatar.present?
+          %span.username= current_user.name
         %b.caret
       %ul.dropdown-menu.extended.logout
         %li

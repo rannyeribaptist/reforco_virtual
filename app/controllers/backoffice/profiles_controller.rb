@@ -19,7 +19,7 @@ class Backoffice::ProfilesController < BackofficeController
 
     respond_to do |format|
       if @profile.save
-        format.html { redirect_to ([:backoffice, @profile]), notice: 'Profile was successfully created.' }
+        format.html { redirect_to "/", notice: 'Profile was successfully created.' }
         format.json { render :show, status: :created, location: ([:backoffice, @profile]) }
       else
         format.html { render :new }
@@ -51,7 +51,8 @@ class Backoffice::ProfilesController < BackofficeController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_profile
-      @profile = Profile.find_by(user_id: params[:id])
+      # @profile = Profile.find_by(user_id: params[:id])
+      @profile = Profile.where(:id => cookies[:profile]).first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

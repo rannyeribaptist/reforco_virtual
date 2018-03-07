@@ -1,7 +1,7 @@
 class Backoffice::DashboardController < BackofficeController
   def index    
-    if current_user.profiles.empty?
-      redirect_to new_backoffice_profile_path
+    if not cookies[:profile].present? and current_user.role == "student"
+      redirect_to profile_sessions_path
     end
   end
 end

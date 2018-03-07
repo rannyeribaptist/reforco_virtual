@@ -1,7 +1,8 @@
 module ApplicationHelper
   def salute
 
-    name = current_user.name.split(" ").first
+    name = Profile.where(:id => cookies[:profile]).first.name.split(" ").first if current_user.role == "student"
+    name = current_user.name.split(" ").first if current_user.role != "student"
 
     case Time.now.hour
 
