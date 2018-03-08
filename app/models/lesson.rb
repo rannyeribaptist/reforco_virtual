@@ -4,10 +4,12 @@ class Lesson < ApplicationRecord
   has_many :apostilles, dependent: :destroy
   has_one :exercise
   has_many :questions, :through => :exercise
+  has_many :answears
 
   accepts_nested_attributes_for :apostilles, allow_destroy: true, reject_if: proc { |attributes| attributes['name'].blank? }
   accepts_nested_attributes_for :exercise, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :questions, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :answears, reject_if: :all_blank
 
   paginates_per 6
 

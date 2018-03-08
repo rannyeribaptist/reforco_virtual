@@ -7,40 +7,48 @@
   .col-lg-4
     = render 'backoffice/lessons/partials/content', lesson: @lesson
 
-%hr
+- if @lesson.exercise.present?
 
-%h1.prf-border-head{style: "font-size:50px;border-bottom:0"} Exercício
+  %hr
 
-= simple_form_for [:backoffice, @lesson], validate: true do |lesson|
-  = lesson.simple_fields_for :questions, validate: true do |question|
-    %h3= question.object.question
-    - question.object.metadata.each do |alternative|
-      - if @lesson.exercise.status == true
+  %h1.prf-border-head{style: "font-size:50px;border-bottom:0"} Exercício
 
-        - if alternative.name == "1" && question.object.answear == alternative.value
+  - if Answear.where(:lesson_id => @lesson.id).where(:profile_id => cookies[:profile]).any? # check for some answear of this profile    
+    
+    - @lesson.exercise.questions.each do |question| # show the questions
+      %h3= question.question
+      - question.metadata.each do |alternative| # show the alternatives
+        - if alternative.name == "1" && Answear.where(:profile_id => cookies[:profile]).where(:value => alternative.value).present? # if it is the right alternative and it answeread it          
           = fa_icon('check-circle-o', class: 'text-success')
           %span{class: 'text-success'}= alternative.value
-
-        - elsif alternative.name == "1" && question.object.answear != alternative.value
+        
+        - elsif alternative.name == "1" && Answear.where(:profile_id => cookies[:profile]).where(:value => alternative.value).empty? # if it is the right alternative but the user hasn't answeread it          
           = fa_icon('check-circle-o', class: 'text-warning')
           %span= alternative.value
 
-        - elsif alternative.name != "1" && question.object.answear == alternative.value
+        - elsif alternative.name != "1" && Answear.where(:profile_id => cookies[:profile]).where(:value => alternative.value).present? # if it is not the correct answear and the user answeread it          
           = fa_icon('times-circle-o', class: 'text-danger')
           %span{class: 'text-danger'}= alternative.value
-
+        
         - else
-          = question.radio_button :answear, alternative.value, :disabled => true
+          %input{type: "radio", :disabled => true}
           = alternative.value
+        %br/        
 
-      - else
-        = question.radio_button :answear, alternative.value, validate: { presence: true }, required: 'required'
-        = alternative.value
-      %br
-  %br
-  = lesson.simple_fields_for :exercise do |exercise|
-    = exercise.input :status, as: :hidden, input_html: {value: 'true'}
-  = lesson.submit 'Enviar', class: 'btn btn-success btn-sm' if @lesson.exercise.status != true
+  - else # if there's no answears yet, show the form
+    = simple_form_for ([:backoffice, @lesson]) do |lesson|
+      - @lesson.exercise.questions.each do |question|
+        %h3= question.question
+        = lesson.simple_fields_for :answears, Answear.new do |answear|
+          - question.metadata.each do |alternative|
+            = answear.input :metadatum_id, as: :hidden, input_html: { value: alternative.id }
+            = answear.input :question_id, as: :hidden, input_html: { value: question.id }
+            = answear.input :profile_id, as: :hidden, input_html: { value: cookies[:profile] }
+            = answear.radio_button :value, alternative.value
+            = alternative.value            
+            %br/
+      %br/
+      = lesson.submit "Enviar", class: "btn btn-success"
 
 %hr
 
@@ -48,3 +56,6 @@
 - if current_user.role == 'admin'
   |
   = link_to fa_icon('edit', class: 'text-warning', text: 'Editar'), edit_backoffice_lesson_path(@lesson)
+
+-# :javascript
+  alert("cookie " + "#{cookies[:profile]}");

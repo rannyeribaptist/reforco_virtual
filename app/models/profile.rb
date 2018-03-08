@@ -1,6 +1,6 @@
 class Profile < ApplicationRecord
   belongs_to :user
-  # belongs_to :profile_session
+  has_many :answears
 
   mount_uploader :avatar, AvatarUploader  
 end

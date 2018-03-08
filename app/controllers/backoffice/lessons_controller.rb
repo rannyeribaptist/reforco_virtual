@@ -78,6 +78,7 @@ class Backoffice::LessonsController < BackofficeController
     # Never trust parameters from the scary internet, only allow the white list through.
     def lesson_params
       params.require(:lesson).permit(:title, :content, :grade_id, :discipline_id, :video, :unity, :image,
+        :answears_attributes => [:value, :profile_id, :metadatum_id, :question_id],
         :apostilles_attributes => [:id, :name, :file, :_destroy],
         :questions_attributes => [:answear, :id],
         :exercise_attributes => [:id, :status,

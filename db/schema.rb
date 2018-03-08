@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180226191441) do
+ActiveRecord::Schema.define(version: 20180308025006) do
+
+  create_table "answears", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "lesson_id"
+    t.bigint "profile_id"
+    t.bigint "metadatum_id"
+    t.bigint "question_id"
+    t.string "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lesson_id"], name: "index_answears_on_lesson_id"
+    t.index ["metadatum_id"], name: "index_answears_on_metadatum_id"
+    t.index ["profile_id"], name: "index_answears_on_profile_id"
+    t.index ["question_id"], name: "index_answears_on_question_id"
+  end
 
   create_table "apostilles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
@@ -50,7 +64,9 @@ ActiveRecord::Schema.define(version: 20180226191441) do
     t.boolean "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "profile_id"
     t.index ["lesson_id"], name: "index_exercises_on_lesson_id"
+    t.index ["profile_id"], name: "index_exercises_on_profile_id"
   end
 
   create_table "grades", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -165,9 +181,14 @@ ActiveRecord::Schema.define(version: 20180226191441) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "answears", "lessons"
+  add_foreign_key "answears", "metadata"
+  add_foreign_key "answears", "profiles"
+  add_foreign_key "answears", "questions"
   add_foreign_key "apostilles", "lessons"
   add_foreign_key "disciplines", "configs"
   add_foreign_key "exercises", "lessons"
+  add_foreign_key "exercises", "profiles"
   add_foreign_key "grades", "configs"
   add_foreign_key "lessons", "disciplines"
   add_foreign_key "lessons", "grades"
